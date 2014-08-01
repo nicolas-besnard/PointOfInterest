@@ -7,18 +7,24 @@
 //
 
 import UIKit
+import MapKit
 
-class ViewController: UIViewController
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
 {
+    @IBOutlet weak var mapView: MKMapView!
+    
+    var locationManager: CLLocationManager = CLLocationManager()
     var poiModel: POIModel!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
+        initLocationManager()
+    
         poiModel = context().poiModel
         
-        NSNotificationCenter.defaultCenter().postNotificationName("AskForPOI", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName(Notification.AskForPOI.toRaw(), object: nil)
         
         setupObserver()
     }
@@ -28,6 +34,47 @@ class ViewController: UIViewController
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    // LOCATION MANAGER
+    
+    func initLocationManager()
+    {
+        locationManager.delegate = self
+        
+        locationManager.distanceFilter = 0.0
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+    }
+    
+    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus)
+    {
+        if status == CLAuthorizationStatus.NotDetermined
+        {
+            println("LocamationManager Request")
+            manager.requestWhenInUseAuthorization()
+        }
+        else if status == CLAuthorizationStatus.AuthorizedWhenInUse
+        {
+            println("Locatinmanager Authorized")
+            locationManager.startUpdatingLocation()
+            initMapView()
+        }
+        else
+        {
+            println("Error on locationManager")
+        }
+    }
+    
+    
+    // MAP VIEW
+    
+    func initMapView()
+    {
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+    }
+    
+    // OBSERVER 
     
     func setupObserver()
     {

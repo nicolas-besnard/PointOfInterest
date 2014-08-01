@@ -22,6 +22,7 @@
 		3746DE12198BC57E0060AFBC /* ControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746DE11198BC57E0060AFBC /* ControllerBase.swift */; };
 		3746DE14198BC5C60060AFBC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746DE13198BC5C60060AFBC /* UIViewController.swift */; };
 		3746DE16198BC7D00060AFBC /* MockPOIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746DE15198BC7D00060AFBC /* MockPOIService.swift */; };
+		37D3F793198C171C002CC134 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D3F792198C171C002CC134 /* Notification.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		3746DE11198BC57E0060AFBC /* ControllerBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerBase.swift; sourceTree = "<group>"; };
 		3746DE13198BC5C60060AFBC /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		3746DE15198BC7D00060AFBC /* MockPOIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockPOIService.swift; sourceTree = "<group>"; };
+		37D3F792198C171C002CC134 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		3746DDDC198BBFC30060AFBC /* POI */ = {
 			isa = PBXGroup;
 			children = (
+				37D3F791198C1710002CC134 /* Constants */,
 				3746DE0C198BC3010060AFBC /* Services */,
 				3746DE00198BC03E0060AFBC /* ViewControllers */,
 				3746DDFF198BC0360060AFBC /* Controllers */,
@@ -186,6 +189,14 @@
 				3746DE15198BC7D00060AFBC /* MockPOIService.swift */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		37D3F791198C1710002CC134 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				37D3F792198C171C002CC134 /* Notification.swift */,
+			);
+			name = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +307,7 @@
 				3746DE12198BC57E0060AFBC /* ControllerBase.swift in Sources */,
 				3746DE10198BC4120060AFBC /* POIService.swift in Sources */,
 				3746DE16198BC7D00060AFBC /* MockPOIService.swift in Sources */,
+				37D3F793198C171C002CC134 /* Notification.swift in Sources */,
 				3746DE06198BC1BC0060AFBC /* RestaurantPOIVO.swift in Sources */,
 				3746DE0B198BC2F20060AFBC /* POIController.swift in Sources */,
 				3746DE02198BC0700060AFBC /* POIVO.swift in Sources */,
@@ -486,6 +498,7 @@
 				3746DDF8198BBFC40060AFBC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3746DDF9198BBFC40060AFBC /* Build configuration list for PBXNativeTarget "POITests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +507,7 @@
 				3746DDFB198BBFC40060AFBC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

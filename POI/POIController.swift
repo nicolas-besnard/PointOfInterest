@@ -22,13 +22,12 @@ class POIController : ControllerBase
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "didAskForPOI:",
-            name: "AskForPOI",
+            name: Notification.AskForPOI.toRaw(),
             object: nil)
     }
     
     func didAskForPOI(notification: NSNotification)
     {
-        println("COUCOU")
         searchNearbyPOI()
     }
     
