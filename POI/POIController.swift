@@ -28,10 +28,8 @@ class POIController : ControllerBase
     
     func didAskForPOI(notification: NSNotification)
     {
-        if notification.name == "AskForPOI"
-        {
-            println("COUCOU")
-        }
+        println("COUCOU")
+        searchNearbyPOI()
     }
     
     func searchNearbyPOI()
@@ -42,5 +40,10 @@ class POIController : ControllerBase
                 self.poiModel.addPOIFromArray(pois)
             })
         }
+    }
+    
+    deinit
+    {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }

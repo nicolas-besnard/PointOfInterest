@@ -8,7 +8,7 @@
 
 import Foundation
 
-class POIModel
+class POIModel : NSObject
 {
     var collection: [POIVO] = []
     
