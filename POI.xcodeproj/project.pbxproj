@@ -12,6 +12,16 @@
 		3746DDE5198BBFC30060AFBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3746DDE3198BBFC30060AFBC /* Main.storyboard */; };
 		3746DDE7198BBFC30060AFBC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3746DDE6198BBFC30060AFBC /* Images.xcassets */; };
 		3746DDF3198BBFC40060AFBC /* POITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746DDF2198BBFC40060AFBC /* POITests.swift */; };
+		3746DE02198BC0700060AFBC /* POIVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746DE01198BC0700060AFBC /* POIVO.swift */; };
+		3746DE04198BC1100060AFBC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3746DE03198BC1100060AFBC /* CoreLocation.framework */; };
+		3746DE06198BC1BC0060AFBC /* RestaurantPOIVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746DE05198BC1BC0060AFBC /* RestaurantPOIVO.swift */; };
+		3746DE09198BC2880060AFBC /* POIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746DE08198BC2880060AFBC /* POIModel.swift */; };
+		3746DE0B198BC2F20060AFBC /* POIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746DE0A198BC2F20060AFBC /* POIController.swift */; };
+		3746DE0E198BC3EF0060AFBC /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746DE0D198BC3EF0060AFBC /* Context.swift */; };
+		3746DE10198BC4120060AFBC /* POIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746DE0F198BC4120060AFBC /* POIService.swift */; };
+		3746DE12198BC57E0060AFBC /* ControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746DE11198BC57E0060AFBC /* ControllerBase.swift */; };
+		3746DE14198BC5C60060AFBC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746DE13198BC5C60060AFBC /* UIViewController.swift */; };
+		3746DE16198BC7D00060AFBC /* MockPOIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746DE15198BC7D00060AFBC /* MockPOIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +44,16 @@
 		3746DDEC198BBFC40060AFBC /* POITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = POITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3746DDF1198BBFC40060AFBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3746DDF2198BBFC40060AFBC /* POITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POITests.swift; sourceTree = "<group>"; };
+		3746DE01198BC0700060AFBC /* POIVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POIVO.swift; sourceTree = "<group>"; };
+		3746DE03198BC1100060AFBC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3746DE05198BC1BC0060AFBC /* RestaurantPOIVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantPOIVO.swift; sourceTree = "<group>"; };
+		3746DE08198BC2880060AFBC /* POIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POIModel.swift; sourceTree = "<group>"; };
+		3746DE0A198BC2F20060AFBC /* POIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POIController.swift; sourceTree = "<group>"; };
+		3746DE0D198BC3EF0060AFBC /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		3746DE0F198BC4120060AFBC /* POIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POIService.swift; sourceTree = "<group>"; };
+		3746DE11198BC57E0060AFBC /* ControllerBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerBase.swift; sourceTree = "<group>"; };
+		3746DE13198BC5C60060AFBC /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		3746DE15198BC7D00060AFBC /* MockPOIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockPOIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3746DE04198BC1100060AFBC /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +78,7 @@
 		3746DDD1198BBFC30060AFBC = {
 			isa = PBXGroup;
 			children = (
+				3746DE03198BC1100060AFBC /* CoreLocation.framework */,
 				3746DDDC198BBFC30060AFBC /* POI */,
 				3746DDEF198BBFC40060AFBC /* POITests */,
 				3746DDDB198BBFC30060AFBC /* Products */,
@@ -75,11 +97,16 @@
 		3746DDDC198BBFC30060AFBC /* POI */ = {
 			isa = PBXGroup;
 			children = (
+				3746DE0C198BC3010060AFBC /* Services */,
+				3746DE00198BC03E0060AFBC /* ViewControllers */,
+				3746DDFF198BC0360060AFBC /* Controllers */,
+				3746DDFE198BC02A0060AFBC /* Models */,
+				3746DDFD198BC0250060AFBC /* VO */,
 				3746DDDF198BBFC30060AFBC /* AppDelegate.swift */,
-				3746DDE1198BBFC30060AFBC /* ViewController.swift */,
 				3746DDE3198BBFC30060AFBC /* Main.storyboard */,
 				3746DDE6198BBFC30060AFBC /* Images.xcassets */,
 				3746DDDD198BBFC30060AFBC /* Supporting Files */,
+				3746DE0D198BC3EF0060AFBC /* Context.swift */,
 			);
 			path = POI;
 			sourceTree = "<group>";
@@ -107,6 +134,58 @@
 				3746DDF1198BBFC40060AFBC /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3746DDFD198BC0250060AFBC /* VO */ = {
+			isa = PBXGroup;
+			children = (
+				3746DE07198BC1C10060AFBC /* POI */,
+			);
+			name = VO;
+			sourceTree = "<group>";
+		};
+		3746DDFE198BC02A0060AFBC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3746DE08198BC2880060AFBC /* POIModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		3746DDFF198BC0360060AFBC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3746DE0A198BC2F20060AFBC /* POIController.swift */,
+				3746DE11198BC57E0060AFBC /* ControllerBase.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		3746DE00198BC03E0060AFBC /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3746DDE1198BBFC30060AFBC /* ViewController.swift */,
+				3746DE13198BC5C60060AFBC /* UIViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3746DE07198BC1C10060AFBC /* POI */ = {
+			isa = PBXGroup;
+			children = (
+				3746DE05198BC1BC0060AFBC /* RestaurantPOIVO.swift */,
+				3746DE01198BC0700060AFBC /* POIVO.swift */,
+			);
+			name = POI;
+			sourceTree = "<group>";
+		};
+		3746DE0C198BC3010060AFBC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3746DE0F198BC4120060AFBC /* POIService.swift */,
+				3746DE15198BC7D00060AFBC /* MockPOIService.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,6 +237,7 @@
 				TargetAttributes = {
 					3746DDD9198BBFC30060AFBC = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = EMXZX9H3PQ;
 					};
 					3746DDEB198BBFC40060AFBC = {
 						CreatedOnToolsVersion = 6.0;
@@ -209,7 +289,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3746DDE2198BBFC30060AFBC /* ViewController.swift in Sources */,
+				3746DE09198BC2880060AFBC /* POIModel.swift in Sources */,
 				3746DDE0198BBFC30060AFBC /* AppDelegate.swift in Sources */,
+				3746DE0E198BC3EF0060AFBC /* Context.swift in Sources */,
+				3746DE14198BC5C60060AFBC /* UIViewController.swift in Sources */,
+				3746DE12198BC57E0060AFBC /* ControllerBase.swift in Sources */,
+				3746DE10198BC4120060AFBC /* POIService.swift in Sources */,
+				3746DE16198BC7D00060AFBC /* MockPOIService.swift in Sources */,
+				3746DE06198BC1BC0060AFBC /* RestaurantPOIVO.swift in Sources */,
+				3746DE0B198BC2F20060AFBC /* POIController.swift in Sources */,
+				3746DE02198BC0700060AFBC /* POIVO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +414,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = POI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -336,6 +426,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = POI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
