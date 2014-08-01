@@ -14,5 +14,5 @@ typealias POIServiceCompletionBlock = (poi:Array<POIVO>) -> Void
 
 protocol POIServiceProtocol
 {
-    func searchWithLat(lat: CLLocationDegrees, lon: CLLocationDegrees, completionBlock: POIServiceCompletionBlock)
+    func searcWithCoordinate(coordinate: CLLocationCoordinate2D, completionBlock: POIServiceCompletionBlock)
 }

@@ -18,7 +18,6 @@ enum POIType
 class POIVO
 {
     var id: String = "";
-    var lat: CLLocationDegrees = 0.0;
-    var lon: CLLocationDegrees = 0.0;
+    var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
     var type: POIType = POIType.Unknown;
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MapKit
 
 class POIController : ControllerBase
 {
@@ -35,7 +36,7 @@ class POIController : ControllerBase
     {
         for service: POIServiceProtocol in context().poiServices
         {
-            service.searchWithLat(0.0, lon: 0.0, completionBlock: {(pois:Array<POIVO>) in
+            service.searcWithCoordinate(CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0), completionBlock: {(pois:Array<POIVO>) in
                 self.poiModel.addPOIFromArray(pois)
             })
         }

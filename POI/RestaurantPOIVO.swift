@@ -7,6 +7,12 @@
 //
 
 import Foundation
+import MapKit
 
 class RestaurantPOIVO : POIVO
-{}
+{
+    func initWithCoordinate(coordinate: CLLocationCoordinate2D)
+    {
+
+    }
+}

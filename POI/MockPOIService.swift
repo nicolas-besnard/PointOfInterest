@@ -11,7 +11,7 @@ import MapKit
 
 class MockPOIService : POIServiceProtocol
 {
-    func searchWithLat(lat: CLLocationDegrees, lon: CLLocationDegrees, completionBlock: POIServiceCompletionBlock)
+    func searcWithCoordinate(coordinate: CLLocationCoordinate2D, completionBlock: POIServiceCompletionBlock)
     {
         var rest1 = RestaurantPOIVO()
         var rest2 = RestaurantPOIVO()
