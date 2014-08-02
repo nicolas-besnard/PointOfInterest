@@ -61,7 +61,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
         else
         {
-            println("Error on locationManager")
+            println("Error on locationManager \(status.hashValue)")
         }
     }
     
@@ -72,6 +72,54 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     {
         mapView.delegate = self
         mapView.showsUserLocation = true
+    }
+    
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView!
+    {
+        // Don't handle user location pin
+        if annotation.isKindOfClass(MKUserLocation)
+        {
+            return nil
+        }
+
+        var pin = mapView.dequeueReusableAnnotationViewWithIdentifier(MapAnnotation.POIAnnotation.toRaw())
+        
+        if !pin
+        {
+            pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: MapAnnotation.POIAnnotation.toRaw())
+            
+            let rightButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
+            rightButton.setTitle(annotation.title, forState: UIControlState.Normal)
+            
+            pin.rightCalloutAccessoryView = rightButton
+            pin.canShowCallout = true
+        }
+        return pin
+//        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(MapAnnotation.POIAnnotation.toRaw())
+        
+//        if !annotationView
+//        {
+//            println("ici")
+//            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: MapAnnotation.POIAnnotation.toRaw())
+//            
+//            let rightButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
+//            rightButton.setTitle(annotation.title, forState: UIControlState.Normal)
+//
+//            annotationView
+//            annotationView.rightCalloutAccessoryView = rightButton as UIView
+//            annotationView.canShowCallout = true
+//            
+//            annotationView.
+//        }
+//        else
+       
+//        return annotationView
+    }
+    
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!)
+    {
+        println("test")
+        
     }
     
     // OBSERVER 
@@ -98,6 +146,16 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     {
         //reload data
         println("POI model collectino changed : \(poiModel.collection.count)")
+        for poi: POIVO in poiModel.collection
+        {
+            let point: MKPointAnnotation = MKPointAnnotation()
+            
+            point.coordinate = poi.coordinate
+            point.title = poi.id
+            point.subtitle = "subtiltee"
+            
+            self.mapView.addAnnotation(point)
+        }
     }
     
     deinit

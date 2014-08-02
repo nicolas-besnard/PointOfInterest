@@ -11,8 +11,15 @@ import MapKit
 
 class RestaurantPOIVO : POIVO
 {
-    func initWithCoordinate(coordinate: CLLocationCoordinate2D)
+    init()
     {
-
+        super.init()
+    }
+    
+    init(id: String, coordinate: CLLocationCoordinate2D)
+    {
+        super.init()
+        self.id = id
+        self.coordinate = coordinate
     }
 }

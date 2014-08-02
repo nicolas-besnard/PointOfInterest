@@ -16,7 +16,7 @@ extension UIViewController
         return appDelegate().context
     }
     
-    func appDelegate() -> AppDelegate
+    private func appDelegate() -> AppDelegate
     {
         return UIApplication.sharedApplication().delegate as AppDelegate
     }
