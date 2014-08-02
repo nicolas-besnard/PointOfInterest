@@ -12,6 +12,8 @@ import MapKit
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
 {
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var moreInfosView: UIView!
+    @IBOutlet weak var mapOverlayView: UIView!
     
     var locationManager: CLLocationManager = CLLocationManager()
     var poiModel: POIModel!
@@ -27,8 +29,35 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         NSNotificationCenter.defaultCenter().postNotificationName(Notification.AskForPOI.toRaw(), object: nil)
         
         setupObserver()
+        initTapOnMapOverlayView()
     }
-
+    
+    func initTapOnMapOverlayView()
+    {
+//        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake...];
+//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewTapped:)];
+//        [imageView addGestureRecognizer:tap];
+        
+        let tap = UITapGestureRecognizer(target: self, action: Selector("mapOverlayTouched"))
+        self.mapOverlayView.addGestureRecognizer(tap)
+    }
+    
+    func mapOverlayTouched()
+    {
+        println("TOUCH")
+        UIView.transitionWithView(self.view, duration: 0.25, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            let frame = self.moreInfosView.frame
+            let x = frame.origin.x
+            let y = frame.origin.y + frame.height
+            let width = frame.width
+            let height = frame.height
+            self.moreInfosView.frame = CGRect(x: x, y: y, width: width, height: height)
+            self.mapOverlayView.alpha = 0
+            }, completion: { (fininshed: Bool) -> () in
+                self.mapOverlayView.hidden = true
+            })
+    }
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
@@ -118,8 +147,18 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!)
     {
-        println("test")
-        
+        self.mapOverlayView.hidden = false
+        UIView.transitionWithView(self.view, duration: 0.25, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            let frame = self.moreInfosView.frame
+            let x = frame.origin.x
+            let y = frame.origin.y - frame.height
+            let width = frame.width
+            let height = frame.height
+            self.moreInfosView.frame = CGRect(x: x, y: y, width: width, height: height)
+            self.mapOverlayView.alpha = 0.5
+            }, completion: { (fininshed: Bool) -> () in
+               
+            })
     }
     
     // OBSERVER 

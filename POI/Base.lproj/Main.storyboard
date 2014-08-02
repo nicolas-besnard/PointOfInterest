@@ -19,11 +19,21 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="FAt-eu-KqB">
                                 <rect key="frame" x="49" y="65" width="490" height="470"/>
                             </mapView>
+                            <view hidden="YES" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="98h-5k-uAq" userLabel="Map Overlay View">
+                                <rect key="frame" x="49" y="65" width="490" height="470"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dyt-oD-3ox" userLabel="More Infos View">
+                                <rect key="frame" x="49" y="535" width="490" height="300"/>
+                                <color key="backgroundColor" red="1" green="0.18814164870801298" blue="0.23186699406786648" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="mapOverlayView" destination="98h-5k-uAq" id="RZR-X8-h1T"/>
                         <outlet property="mapView" destination="FAt-eu-KqB" id="pta-gR-gkc"/>
+                        <outlet property="moreInfosView" destination="Dyt-oD-3ox" id="M9t-Q7-Lwg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
