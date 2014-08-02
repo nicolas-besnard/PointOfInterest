@@ -18,33 +18,33 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var locationManager: CLLocationManager = CLLocationManager()
     var poiModel: POIModel!
     
+    var mapIsCentered: Bool!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
+        mapIsCentered = false
         initLocationManager()
+        initMapView()
     
         poiModel = context().poiModel
         
         NSNotificationCenter.defaultCenter().postNotificationName(Notification.AskForPOI.toRaw(), object: nil)
         
         setupObserver()
+        
         initTapOnMapOverlayView()
     }
     
     func initTapOnMapOverlayView()
     {
-//        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake...];
-//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewTapped:)];
-//        [imageView addGestureRecognizer:tap];
-        
         let tap = UITapGestureRecognizer(target: self, action: Selector("mapOverlayTouched"))
         self.mapOverlayView.addGestureRecognizer(tap)
     }
     
     func mapOverlayTouched()
     {
-        println("TOUCH")
         UIView.transitionWithView(self.view, duration: 0.25, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
             let frame = self.moreInfosView.frame
             let x = frame.origin.x
@@ -61,7 +61,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
@@ -79,18 +78,26 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     {
         if status == CLAuthorizationStatus.NotDetermined
         {
-            println("LocamationManager Request")
+            println("LocationManager Request")
             manager.requestWhenInUseAuthorization()
         }
         else if status == CLAuthorizationStatus.AuthorizedWhenInUse
         {
-            println("Locatinmanager Authorized")
+            println("LocatoinManager Authorized")
             locationManager.startUpdatingLocation()
-            initMapView()
         }
         else
         {
             println("Error on locationManager \(status.hashValue)")
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
+    {
+        if mapIsCentered == false
+        {
+            goToUserLocation()
+            mapIsCentered = true
         }
     }
     
@@ -161,7 +168,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             })
     }
     
-    // OBSERVER 
+    func goToUserLocation()
+    {
+        mapView.setCenterCoordinate(locationManager.location.coordinate, animated: true)
+        let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(locationManager.location.coordinate, 3000, 3000)
+        
+        mapView.setRegion(region, animated: true)
+    }
+    
+    // OBSERVER
     
     func setupObserver()
     {

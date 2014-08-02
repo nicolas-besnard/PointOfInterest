@@ -16,20 +16,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="FAt-eu-KqB">
-                                <rect key="frame" x="49" y="65" width="490" height="470"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FAt-eu-KqB">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </mapView>
-                            <view hidden="YES" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="98h-5k-uAq" userLabel="Map Overlay View">
-                                <rect key="frame" x="49" y="65" width="490" height="470"/>
+                            <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="98h-5k-uAq" userLabel="Map Overlay View">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dyt-oD-3ox" userLabel="More Infos View">
-                                <rect key="frame" x="49" y="535" width="490" height="300"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dyt-oD-3ox" userLabel="More Infos View">
+                                <rect key="frame" x="0.0" y="600" width="600" height="300"/>
                                 <color key="backgroundColor" red="1" green="0.18814164870801298" blue="0.23186699406786648" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Dyt-oD-3ox" secondAttribute="trailing" id="GkN-oF-ieB"/>
+                            <constraint firstAttribute="trailing" secondItem="Dyt-oD-3ox" secondAttribute="trailing" id="PQ5-YD-QJL"/>
+                            <constraint firstAttribute="trailing" secondItem="98h-5k-uAq" secondAttribute="trailing" id="Pie-7M-1pL"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="98h-5k-uAq" secondAttribute="bottom" id="Tmn-2T-ppL"/>
+                            <constraint firstItem="Dyt-oD-3ox" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Vw9-KK-L1I"/>
+                            <constraint firstItem="98h-5k-uAq" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="WDa-i2-wBV"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="FAt-eu-KqB" secondAttribute="bottom" id="Yx8-L5-ZgW"/>
+                            <constraint firstAttribute="trailing" secondItem="FAt-eu-KqB" secondAttribute="trailing" id="axI-rG-dDV"/>
+                            <constraint firstItem="Dyt-oD-3ox" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="de7-qP-b9r"/>
+                            <constraint firstItem="Dyt-oD-3ox" firstAttribute="top" secondItem="2fi-mo-0CV" secondAttribute="bottom" id="hVt-Ye-dUz"/>
+                            <constraint firstAttribute="bottom" secondItem="Dyt-oD-3ox" secondAttribute="bottom" constant="-300" id="iL4-n9-MJo"/>
+                            <constraint firstItem="FAt-eu-KqB" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="ifS-ev-gTW"/>
+                            <constraint firstItem="FAt-eu-KqB" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="jPR-a6-xli"/>
+                            <constraint firstItem="98h-5k-uAq" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="lRg-se-yFl"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Dyt-oD-3ox" secondAttribute="bottom" constant="-300" id="pN9-ko-RzL"/>
+                            <constraint firstItem="Dyt-oD-3ox" firstAttribute="top" secondItem="2fi-mo-0CV" secondAttribute="bottom" id="sui-z3-hiP"/>
+                        </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="mapOverlayView" destination="98h-5k-uAq" id="RZR-X8-h1T"/>
                         <outlet property="mapView" destination="FAt-eu-KqB" id="pta-gR-gkc"/>
