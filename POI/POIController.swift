@@ -23,7 +23,7 @@ class POIController : ControllerBase
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "didAskForPOI:",
-            name: Notification.AskForPOI.toRaw(),
+            name: Notification.RetrievePOIFromServices.toRaw(),
             object: nil)
     }
     

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Context
 {
@@ -16,6 +17,9 @@ class Context
     // CONTROLLER
     var poiController: POIController!
     
+    // VIEW CONTROLLER
+    var poiDetailsController: POIDetailsController!
+    
     // SERVICES
     var poiServices: [POIServiceProtocol]
     
@@ -24,10 +28,18 @@ class Context
         poiModel = POIModel()
         poiController = POIController()
         poiServices = [MockPOIService()]
+        poiDetailsController = POIDetailsController()
     }
     
     func setup()
     {
         poiController.setup()
+        poiDetailsController.setup()
+    }
+    
+    func newPOIDetailsViewController() -> POIDetailsViewController
+    {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        return storyboard.instantiateViewControllerWithIdentifier("POIDetailsViewControllerId") as POIDetailsViewController
     }
 }

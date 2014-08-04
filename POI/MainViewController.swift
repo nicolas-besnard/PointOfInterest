@@ -9,11 +9,9 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
+class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
 {
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var moreInfosView: UIView!
-    @IBOutlet weak var mapOverlayView: UIView!
     
     var locationManager: CLLocationManager = CLLocationManager()
     var poiModel: POIModel!
@@ -30,32 +28,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
         poiModel = context().poiModel
         
-        NSNotificationCenter.defaultCenter().postNotificationName(Notification.AskForPOI.toRaw(), object: nil)
+        println("To raw \(Notification.RetrievePOIFromServices.toRaw())")
+        NSNotificationCenter.defaultCenter().postNotificationName(Notification.RetrievePOIFromServices.toRaw(), object: nil)
         
         setupObserver()
-        
-        initTapOnMapOverlayView()
-    }
-    
-    func initTapOnMapOverlayView()
-    {
-        let tap = UITapGestureRecognizer(target: self, action: Selector("mapOverlayTouched"))
-        self.mapOverlayView.addGestureRecognizer(tap)
-    }
-    
-    func mapOverlayTouched()
-    {
-        UIView.transitionWithView(self.view, duration: 0.25, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            let frame = self.moreInfosView.frame
-            let x = frame.origin.x
-            let y = frame.origin.y + frame.height
-            let width = frame.width
-            let height = frame.height
-            self.moreInfosView.frame = CGRect(x: x, y: y, width: width, height: height)
-            self.mapOverlayView.alpha = 0
-            }, completion: { (fininshed: Bool) -> () in
-                self.mapOverlayView.hidden = true
-            })
     }
     
     override func didReceiveMemoryWarning()
@@ -154,18 +130,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!)
     {
-        self.mapOverlayView.hidden = false
-        UIView.transitionWithView(self.view, duration: 0.25, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            let frame = self.moreInfosView.frame
-            let x = frame.origin.x
-            let y = frame.origin.y - frame.height
-            let width = frame.width
-            let height = frame.height
-            self.moreInfosView.frame = CGRect(x: x, y: y, width: width, height: height)
-            self.mapOverlayView.alpha = 0.5
-            }, completion: { (fininshed: Bool) -> () in
-               
-            })
+        //NSNotificationCenter.defaultCenter().postNotificationName(Notification.ShowPOIDetailsViewController.toRaw(), object: nil)
+        println("Posting notification with VO : \(self.poiModel.collection[0])")
+        let notification : NSNotification = NSNotification.notificationWithName(Notification.ShowPOIDetailsViewController.toRaw(), object: self, sourceViewController: self, poi: self.poiModel.collection[0])
+        NSNotificationCenter.defaultCenter().postNotification(notification)
     }
     
     func goToUserLocation()
@@ -199,7 +167,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func poiModelCollectionChanged()
     {
         //reload data
-        println("POI model collectino changed : \(poiModel.collection.count)")
+        println("POI model collection changed : \(poiModel.collection.count)")
         for poi: POIVO in poiModel.collection
         {
             let point: MKPointAnnotation = MKPointAnnotation()
