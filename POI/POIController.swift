@@ -13,9 +13,6 @@ class POIController : ControllerBase
 {
     var poiModel: POIModel!
     
-    init()
-    {}
-    
     func setup()
     {
         poiModel = context().poiModel

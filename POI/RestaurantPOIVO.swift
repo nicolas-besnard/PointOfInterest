@@ -10,12 +10,7 @@ import Foundation
 import MapKit
 
 class RestaurantPOIVO : POIVO
-{
-    init()
-    {
-        super.init()
-    }
-    
+{    
     init(id: String, coordinate: CLLocationCoordinate2D)
     {
         super.init()
