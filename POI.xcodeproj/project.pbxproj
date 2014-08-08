@@ -24,6 +24,7 @@
 		3746DE12198BC57E0060AFBC /* ControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746DE11198BC57E0060AFBC /* ControllerBase.swift */; };
 		3746DE14198BC5C60060AFBC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746DE13198BC5C60060AFBC /* UIViewController.swift */; };
 		3746DE16198BC7D00060AFBC /* MockPOIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746DE15198BC7D00060AFBC /* MockPOIService.swift */; };
+		3757D0231994CC2A00D27184 /* POIAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757D0221994CC2A00D27184 /* POIAnnotation.swift */; };
 		376120F8198F73A70037A7C1 /* POIDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376120F7198F73A70037A7C1 /* POIDetailsView.swift */; };
 		376120FA198F779E0037A7C1 /* POIDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376120F9198F779E0037A7C1 /* POIDetailsViewController.swift */; };
 		37D3F793198C171C002CC134 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D3F792198C171C002CC134 /* Notification.swift */; };
@@ -61,6 +62,7 @@
 		3746DE11198BC57E0060AFBC /* ControllerBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerBase.swift; sourceTree = "<group>"; };
 		3746DE13198BC5C60060AFBC /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		3746DE15198BC7D00060AFBC /* MockPOIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockPOIService.swift; sourceTree = "<group>"; };
+		3757D0221994CC2A00D27184 /* POIAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POIAnnotation.swift; sourceTree = "<group>"; };
 		376120F7198F73A70037A7C1 /* POIDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POIDetailsView.swift; sourceTree = "<group>"; };
 		376120F9198F779E0037A7C1 /* POIDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POIDetailsViewController.swift; sourceTree = "<group>"; };
 		37D3F792198C171C002CC134 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				3746DDE6198BBFC30060AFBC /* Images.xcassets */,
 				3746DDDD198BBFC30060AFBC /* Supporting Files */,
 				3746DE0D198BC3EF0060AFBC /* Context.swift */,
+				3757D0221994CC2A00D27184 /* POIAnnotation.swift */,
 			);
 			path = POI;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				376120FA198F779E0037A7C1 /* POIDetailsViewController.swift in Sources */,
 				3746DDE2198BBFC30060AFBC /* MainViewController.swift in Sources */,
 				3746DE09198BC2880060AFBC /* POIModel.swift in Sources */,
+				3757D0231994CC2A00D27184 /* POIAnnotation.swift in Sources */,
 				3746DDE0198BBFC30060AFBC /* AppDelegate.swift in Sources */,
 				376120F8198F73A70037A7C1 /* POIDetailsView.swift in Sources */,
 				3746DE0E198BC3EF0060AFBC /* Context.swift in Sources */,

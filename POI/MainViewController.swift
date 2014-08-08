@@ -59,12 +59,12 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         }
         else if status == CLAuthorizationStatus.AuthorizedWhenInUse
         {
-            println("LocatoinManager Authorized")
+            println("LocationManager Authorized")
             locationManager.startUpdatingLocation()
         }
         else
         {
-            println("Error on locationManager \(status.hashValue)")
+            println("LocationManager error: \(status.hashValue)")
         }
     }
     
@@ -107,32 +107,16 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             pin.canShowCallout = true
         }
         return pin
-//        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(MapAnnotation.POIAnnotation.toRaw())
-        
-//        if !annotationView
-//        {
-//            println("ici")
-//            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: MapAnnotation.POIAnnotation.toRaw())
-//            
-//            let rightButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
-//            rightButton.setTitle(annotation.title, forState: UIControlState.Normal)
-//
-//            annotationView
-//            annotationView.rightCalloutAccessoryView = rightButton as UIView
-//            annotationView.canShowCallout = true
-//            
-//            annotationView.
-//        }
-//        else
-       
-//        return annotationView
     }
     
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!)
     {
         //NSNotificationCenter.defaultCenter().postNotificationName(Notification.ShowPOIDetailsViewController.toRaw(), object: nil)
-        println("Posting notification with VO : \(self.poiModel.collection[0])")
-        let notification : NSNotification = NSNotification.notificationWithName(Notification.ShowPOIDetailsViewController.toRaw(), object: self, sourceViewController: self, poi: self.poiModel.collection[0])
+        let poiIndex = (view.annotation as POIAnnotation).index
+        println("Posting notification with VO : \(poiIndex)")
+
+        let notification : NSNotification = NSNotification.notificationWithName(Notification.ShowPOIDetailsViewController.toRaw(), object: self, sourceViewController: self, poi: self.poiModel.collection[poiIndex])
+        
         NSNotificationCenter.defaultCenter().postNotification(notification)
     }
     
@@ -161,20 +145,21 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         {
             super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
         }
-
     }
     
     func poiModelCollectionChanged()
     {
         //reload data
         println("POI model collection changed : \(poiModel.collection.count)")
-        for poi: POIVO in poiModel.collection
+
+        for (index, poi: POIVO) in enumerate(poiModel.collection)
         {
-            let point: MKPointAnnotation = MKPointAnnotation()
+            let point = POIAnnotation()
             
             point.coordinate = poi.coordinate
             point.title = poi.id
-            point.subtitle = "subtiltee"
+            point.subtitle = "subtitle"
+            point.index = index
             
             self.mapView.addAnnotation(point)
         }

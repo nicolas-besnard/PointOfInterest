@@ -39,8 +39,6 @@ class POIDetailsController : ControllerBase
         
         if let vc = containsVC as? POIDetailsViewController
         {
-            println("play")
-            poiDetailsViewController.poiDetailsView().playAppearAnimation()
             if !vc.poiDetailsView().viewIsShown
             {
                 vc.poiDetailsView().playAppearAnimation()
