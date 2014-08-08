@@ -19,17 +19,12 @@ class POIController : ControllerBase
         
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "didAskForPOI:",
+            selector: "searchNearbyPOI:",
             name: Notification.RetrievePOIFromServices.toRaw(),
             object: nil)
     }
     
-    func didAskForPOI(notification: NSNotification)
-    {
-        searchNearbyPOI()
-    }
-    
-    func searchNearbyPOI()
+    func searchNearbyPOI(notification: NSNotification)
     {
         for service: POIServiceProtocol in context().poiServices
         {

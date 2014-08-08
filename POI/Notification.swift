@@ -24,7 +24,7 @@ extension NSNotification
     {
         var userInfo = Dictionary<String, AnyObject>()
         userInfo[_sourceViewControllerKey] = sourceViewController
-        userInfo["_poiKey"] = poi
+        userInfo[_poiKey] = poi
 
         let notification : NSNotification = NSNotification.notificationWithName(name, object: object, userInfo: userInfo)
         
@@ -38,12 +38,7 @@ extension NSNotification
     
     func poi()->POIVO?
     {
-        var result:POIVO? = nil
-        if (userInfo)
-        {
-            result = userInfo["_poiKey"] as? POIVO
-        }
-        return  result
+        return userInfo[_poiKey] as? POIVO
     }
 }
     

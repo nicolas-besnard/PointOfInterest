@@ -10,6 +10,8 @@ import UIKit
 
 class POIDetailsView: UIView
 {
+    var viewIsShown = false
+    
     func playAppearAnimation()
     {
         UIView.transitionWithView(self, duration: 0.5, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
@@ -19,7 +21,10 @@ class POIDetailsView: UIView
             let width = frame.width
             let height = frame.height
             self.frame = CGRect(x: x, y: y, width: width, height: height)
-        }, completion: nil)
+        },
+        completion: { (finished: Bool) -> () in
+            self.viewIsShown = true
+        })
     }
     
     func playDisappearAnimation()
@@ -32,6 +37,7 @@ class POIDetailsView: UIView
             let height = frame.height
             self.frame = CGRect(x: x, y: y, width: width, height: height)
         }, completion: { (fininshed: Bool) -> () in
+            self.viewIsShown = false
         })
     }
     

@@ -34,10 +34,7 @@ class POIDetailsViewController: UIViewController
     
     @IBAction func didPushOnCloseButton(sender: AnyObject)
     {
-        if poiDetailsController.viewIsShown == true
-        {
-            poiDetailsView().playDisappearAnimation()
-        }
+        poiDetailsView().playDisappearAnimation()
     }
     
     func poiDetailsView() -> POIDetailsView

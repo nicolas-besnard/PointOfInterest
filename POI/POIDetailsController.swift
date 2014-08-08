@@ -10,9 +10,7 @@ import Foundation
 import UIKit
 
 class POIDetailsController : ControllerBase
-{
-    var viewIsShown = false
-    
+{    
     func setup()
     {
         NSNotificationCenter.defaultCenter().addObserver(
@@ -36,8 +34,35 @@ class POIDetailsController : ControllerBase
         println("POI DETAILS")
 
         let poiDetailsViewController = context().newPOIDetailsViewController()
-        UIApplication.sharedApplication().keyWindow.rootViewController.addChildViewController(poiDetailsViewController)
-        UIApplication.sharedApplication().keyWindow.rootViewController.view.addSubview(poiDetailsViewController.view)
+        
+        let containsVC = rootViewControllerContainsViewController(poiDetailsViewController)
+        
+        if let vc = containsVC as? POIDetailsViewController
+        {
+            println("play")
+            poiDetailsViewController.poiDetailsView().playAppearAnimation()
+            if !vc.poiDetailsView().viewIsShown
+            {
+                vc.poiDetailsView().playAppearAnimation()
+            }
+        }
+        else
+        {
+            UIApplication.sharedApplication().keyWindow.rootViewController.addChildViewController(poiDetailsViewController)
+            UIApplication.sharedApplication().keyWindow.rootViewController.view.addSubview(poiDetailsViewController.view)
+        }
+    }
+    
+    func rootViewControllerContainsViewController(viewController: UIViewController) -> UIViewController!
+    {
+        for currentVC: UIViewController in UIApplication.sharedApplication().keyWindow.rootViewController.childViewControllers as [UIViewController]
+        {
+            if currentVC.isKindOfClass(viewController.classForCoder)
+            {
+                return currentVC
+            }
+        }
+        return nil
     }
     
     deinit
