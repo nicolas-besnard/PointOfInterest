@@ -28,9 +28,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
         poiModel = context().poiModel
         
-        println("To raw \(Notification.RetrievePOIFromServices.toRaw())")
-        NSNotificationCenter.defaultCenter().postNotificationName(Notification.RetrievePOIFromServices.toRaw(), object: nil)
-        
         setupObserver()
     }
     
@@ -70,10 +67,14 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
     {
+        var location = locations[0] as CLLocation
+        
         if mapIsCentered == false
         {
             goToUserLocation()
             mapIsCentered = true
+            println("To raw \(Notification.RetrievePOIFromServices.toRaw())")
+            NSNotificationCenter.defaultCenter().postNotificationName(Notification.RetrievePOIFromServices.toRaw(), object: nil, userInfo: ["latitude": location.coordinate.latitude, "longitude": location.coordinate.longitude])
         }
     }
     

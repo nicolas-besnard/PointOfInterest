@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B2049B1A-9A13-402A-823B-6FC704D15B24</string>
+	<key>IDESourceControlProjectName</key>
+	<string>POI</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>6E84F9047DF30BD885FFBD501E9B8930026104AF</key>
+		<string>github.com:nicolas-besnard/PointOfInterest.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>POI.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>6E84F9047DF30BD885FFBD501E9B8930026104AF</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:nicolas-besnard/PointOfInterest.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>6E84F9047DF30BD885FFBD501E9B8930026104AF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>6E84F9047DF30BD885FFBD501E9B8930026104AF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>POI</string>
+		</dict>
+	</array>
+</dict>
+</plist>
