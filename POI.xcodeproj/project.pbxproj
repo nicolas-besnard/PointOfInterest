@@ -46,6 +46,7 @@
 /* Begin PBXFileReference section */
 		27FCFF58F4E14778AA3B7098 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		37042432198FCCBD00F99EDC /* POIDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POIDetailsController.swift; sourceTree = "<group>"; };
+		37307D0B1995B22100C64A7F /* sandbox.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = sandbox.playground; sourceTree = "<group>"; };
 		373300AB198D239800AB9B15 /* MapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 		3746DDDA198BBFC30060AFBC /* POI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3746DDDE198BBFC30060AFBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -135,6 +136,7 @@
 				3746DE0D198BC3EF0060AFBC /* Context.swift */,
 				3757D0221994CC2A00D27184 /* POIAnnotation.swift */,
 				37879F52199527DF00A391AD /* SwiftyJSON.swift */,
+				37307D0B1995B22100C64A7F /* sandbox.playground */,
 			);
 			path = POI;
 			sourceTree = "<group>";

@@ -16,9 +16,10 @@ class Context
     
     // CONTROLLER
     var poiController: POIController!
+    var poiDetailsController: POIDetailsController!
     
     // VIEW CONTROLLER
-    var poiDetailsController: POIDetailsController!
+    var poiDetailsViewController: POIDetailsViewController!
     
     // SERVICES
     var poiServices: [POIServiceProtocol]
@@ -27,8 +28,9 @@ class Context
     {
         poiModel = POIModel()
         poiController = POIController()
-        poiServices = [StartbucksPOIService(), MockPOIService()]
+        poiServices = [StartbucksPOIService()]
         poiDetailsController = POIDetailsController()
+        poiDetailsViewController = newPOIDetailsViewController()
     }
     
     func setup()

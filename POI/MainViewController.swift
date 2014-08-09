@@ -71,13 +71,13 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         if mapIsCentered == false
         {
-            goToUserLocation()
+            centerMapToCoordinate(locationManager.location.coordinate)
             mapIsCentered = true
             println("To raw \(Notification.RetrievePOIFromServices.toRaw())")
             NSNotificationCenter.defaultCenter().postNotificationName(Notification.RetrievePOIFromServices.toRaw(), object: nil, userInfo: ["latitude": location.coordinate.latitude, "longitude": location.coordinate.longitude])
         }
     }
-    
+
     // MAP VIEW
     
     func initMapView()
@@ -114,16 +114,18 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         //NSNotificationCenter.defaultCenter().postNotificationName(Notification.ShowPOIDetailsViewController.toRaw(), object: nil)
         let poiIndex = (view.annotation as POIAnnotation).index
         println("Posting notification with VO : \(poiIndex)")
+        
+        centerMapToCoordinate(view.annotation.coordinate)
 
         let notification : NSNotification = NSNotification.notificationWithName(Notification.ShowPOIDetailsViewController.toRaw(), object: self, sourceViewController: self, poi: self.poiModel.collection[poiIndex])
         
         NSNotificationCenter.defaultCenter().postNotification(notification)
     }
     
-    func goToUserLocation()
+    func centerMapToCoordinate(coordinate: CLLocationCoordinate2D)
     {
         mapView.setCenterCoordinate(locationManager.location.coordinate, animated: true)
-        let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(locationManager.location.coordinate, 3000, 3000)
+        let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, 3000, 3000)
         
         mapView.setRegion(region, animated: true)
     }

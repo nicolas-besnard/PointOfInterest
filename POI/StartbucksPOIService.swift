@@ -24,7 +24,7 @@ class StartbucksPOIService : POIServiceProtocol
         let latitude = coordinate.latitude
         let longitude = coordinate.longitude
         
-        let endpoint = "https://openapi.starbucks.com/location/v1/stores?&format=json&radius=10&limit=2&brandCode=SBUX&latLng=\(latitude)%2C\(longitude)&apikey=7b35m595vccu6spuuzu2rjh4"
+        let endpoint = "https://openapi.starbucks.com/location/v1/stores?&format=json&radius=10&limit=15&brandCode=SBUX&latLng=\(latitude)%2C\(longitude)&apikey=7b35m595vccu6spuuzu2rjh4"
         
         manager.GET(endpoint,
             parameters: nil,

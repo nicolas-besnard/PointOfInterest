@@ -10,6 +10,8 @@ import UIKit
 
 class POIDetailsViewController: UIViewController
 {
+    @IBOutlet weak var distanceLabel: UILabel!
+    
     var poiDetailsController: POIDetailsController!
     
     override func viewDidLoad()
@@ -18,7 +20,13 @@ class POIDetailsViewController: UIViewController
         
         poiDetailsView().moveToDefaultPosition()
         
-        poiDetailsController = context().poiDetailsController
+        poiDetailsController = context().poiDetailsController        
+    }
+    
+    func setDetails(poi: RestaurantPOIVO)
+    {
+        println("set details")
+        distanceLabel.text = NSString(format: "%f", poi.distance)
     }
     
     override func viewWillAppear(animated: Bool)

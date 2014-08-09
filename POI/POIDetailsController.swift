@@ -24,43 +24,43 @@ class POIDetailsController : ControllerBase
     {
         if let poi = notification.poi()?
         {
-            println("did ask : \(poi.coordinate.latitude)")
+            println("did ask : \(poi.distance)")
+            
+            let sourceViewController: UIViewController! = notification.sourceViewController()
+            
+            let poiDetailsViewController = context().poiDetailsViewController
+            
+            let containsVC = viewControllerContainsViewController(sourceViewController, contains: poiDetailsViewController)
+            if containsVC == true
+            {
+                if !poiDetailsViewController.poiDetailsView().viewIsShown
+                {
+                    poiDetailsViewController.poiDetailsView().playAppearAnimation()
+                }
+            }
+            else
+            {
+                sourceViewController.addChildViewController(poiDetailsViewController)
+                sourceViewController.view.addSubview(poiDetailsViewController.view)
+            }
+            poiDetailsViewController.setDetails(poi)
         }
         else
         {
             println("No POI provided, create notification using notificationWithName(name:,object:, sourceViewController:, poi:)")
         }
-
-        println("POI DETAILS")
-
-        let poiDetailsViewController = context().newPOIDetailsViewController()
-        
-        let containsVC = rootViewControllerContainsViewController(poiDetailsViewController)
-        
-        if let vc = containsVC as? POIDetailsViewController
-        {
-            if !vc.poiDetailsView().viewIsShown
-            {
-                vc.poiDetailsView().playAppearAnimation()
-            }
-        }
-        else
-        {
-            UIApplication.sharedApplication().keyWindow.rootViewController.addChildViewController(poiDetailsViewController)
-            UIApplication.sharedApplication().keyWindow.rootViewController.view.addSubview(poiDetailsViewController.view)
-        }
     }
     
-    func rootViewControllerContainsViewController(viewController: UIViewController) -> UIViewController!
+    private func viewControllerContainsViewController(viewController: UIViewController, contains: UIViewController) -> Bool
     {
         for currentVC: UIViewController in UIApplication.sharedApplication().keyWindow.rootViewController.childViewControllers as [UIViewController]
         {
             if currentVC.isKindOfClass(viewController.classForCoder)
             {
-                return currentVC
+                return true
             }
         }
-        return nil
+        return false
     }
     
     deinit

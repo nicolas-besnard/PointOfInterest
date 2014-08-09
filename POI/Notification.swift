@@ -13,6 +13,7 @@ enum Notification: String
 {
     case RetrievePOIFromServices = "RetrievePOIFromServices"
     case ShowPOIDetailsViewController = "ShowPOIDetailsViewController"
+    case SetPOIDetailsViewData = "SetPOIDetailsViewData"
 }
 
 let _sourceViewControllerKey : String = "_sourceViewControllerKey"
@@ -31,14 +32,14 @@ extension NSNotification
         return notification
     }
     
-    func sourceViewController()->UIViewController?
+    func sourceViewController() -> UIViewController?
     {
         return userInfo[_sourceViewControllerKey] as? UIViewController
     }
     
-    func poi()->POIVO?
+    func poi() -> RestaurantPOIVO?
     {
-        return userInfo[_poiKey] as? POIVO
+        return userInfo[_poiKey] as? RestaurantPOIVO
     }
 }
     
