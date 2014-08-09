@@ -30,6 +30,10 @@ class StartbucksPOIService : POIServiceProtocol
             parameters: nil,
             success: { (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
                 println("success")
+
+                let restaurants = RestaurantPOIVO.initWithJson(responseObject)
+
+                completionBlock(poi: restaurants)
             },
             failure: { (operation: AFHTTPRequestOperation!, error: NSError!) in
                 println("fail")

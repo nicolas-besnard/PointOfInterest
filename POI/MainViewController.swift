@@ -78,7 +78,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         }
     }
     
-    
     // MAP VIEW
     
     func initMapView()

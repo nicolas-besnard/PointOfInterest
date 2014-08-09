@@ -27,7 +27,7 @@ class Context
     {
         poiModel = POIModel()
         poiController = POIController()
-        poiServices = [StartbucksPOIService()]
+        poiServices = [StartbucksPOIService(), MockPOIService()]
         poiDetailsController = POIDetailsController()
     }
     

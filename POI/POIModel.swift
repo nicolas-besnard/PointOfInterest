@@ -10,7 +10,7 @@ import Foundation
 
 class POIModel : NSObject
 {
-    var collection: [POIVO] = []
+    dynamic var collection: [POIVO] = []
     
     func addPOI(poi: POIVO)
     {

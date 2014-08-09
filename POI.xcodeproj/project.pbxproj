@@ -29,6 +29,7 @@
 		376120F8198F73A70037A7C1 /* POIDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376120F7198F73A70037A7C1 /* POIDetailsView.swift */; };
 		376120FA198F779E0037A7C1 /* POIDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376120F9198F779E0037A7C1 /* POIDetailsViewController.swift */; };
 		37879F4C19951E1500A391AD /* StartbucksPOIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37879F4B19951E1500A391AD /* StartbucksPOIService.swift */; };
+		37879F53199527DF00A391AD /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37879F52199527DF00A391AD /* SwiftyJSON.swift */; };
 		37D3F793198C171C002CC134 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D3F792198C171C002CC134 /* Notification.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		376120F9198F779E0037A7C1 /* POIDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POIDetailsViewController.swift; sourceTree = "<group>"; };
 		37879F4B19951E1500A391AD /* StartbucksPOIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartbucksPOIService.swift; sourceTree = "<group>"; };
 		37879F4D1995222500A391AD /* POI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "POI-Bridging-Header.h"; sourceTree = "<group>"; };
+		37879F52199527DF00A391AD /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		37D3F792198C171C002CC134 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		6EE1BC3DC3E4464DBD6A679D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -132,6 +134,7 @@
 				3746DDDD198BBFC30060AFBC /* Supporting Files */,
 				3746DE0D198BC3EF0060AFBC /* Context.swift */,
 				3757D0221994CC2A00D27184 /* POIAnnotation.swift */,
+				37879F52199527DF00A391AD /* SwiftyJSON.swift */,
 			);
 			path = POI;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				3746DDE0198BBFC30060AFBC /* AppDelegate.swift in Sources */,
 				376120F8198F73A70037A7C1 /* POIDetailsView.swift in Sources */,
 				3746DE0E198BC3EF0060AFBC /* Context.swift in Sources */,
+				37879F53199527DF00A391AD /* SwiftyJSON.swift in Sources */,
 				3746DE14198BC5C60060AFBC /* UIViewController.swift in Sources */,
 				37042433198FCCBD00F99EDC /* POIDetailsController.swift in Sources */,
 				3746DE12198BC57E0060AFBC /* ControllerBase.swift in Sources */,
