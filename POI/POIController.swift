@@ -26,12 +26,14 @@ class POIController : ControllerBase
     
     func searchNearbyPOI(notification: NSNotification)
     {
-        let latitude = notification.userInfo["latitude"]! as CLLocationDegrees
+        let latitude  = notification.userInfo["latitude"]! as CLLocationDegrees
         let longitude = notification.userInfo["longitude"]! as CLLocationDegrees
+        
+        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         
         for service: POIServiceProtocol in context().poiServices
         {
-            service.searcWithCoordinate(CLLocationCoordinate2D(latitude: latitude, longitude: longitude), completionBlock: {(pois:Array<POIVO>) in
+            service.searcWithCoordinate(coordinate, completionBlock: { (pois: [POIVO]) in
                 self.poiModel.addPOIFromArray(pois)
             })
         }
