@@ -18,6 +18,8 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     var mapIsCentered: Bool!
     
+    var lastCenteredLocation = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -71,6 +73,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         if mapIsCentered == false
         {
+            println("Center map to \(locationManager.location.coordinate)")
             centerMapToCoordinate(locationManager.location.coordinate)
             mapIsCentered = true
             println("To raw \(Notification.RetrievePOIFromServices.toRaw())")
@@ -124,10 +127,15 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     func centerMapToCoordinate(coordinate: CLLocationCoordinate2D)
     {
-        mapView.setCenterCoordinate(locationManager.location.coordinate, animated: true)
-        let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, 3000, 3000)
+        if lastCenteredLocation.latitude != coordinate.latitude
+            && lastCenteredLocation.longitude != coordinate.longitude
+        {
+            mapView.setCenterCoordinate(locationManager.location.coordinate, animated: true)
+            let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, 1000, 1000)
         
-        mapView.setRegion(region, animated: true)
+            mapView.setRegion(region, animated: true)
+            lastCenteredLocation = coordinate
+        }
     }
     
     // OBSERVER
