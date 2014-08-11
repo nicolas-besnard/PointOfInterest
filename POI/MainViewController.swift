@@ -38,7 +38,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         super.didReceiveMemoryWarning()
     }
     
-    
     // LOCATION MANAGER
     
     func initLocationManager()
@@ -67,6 +66,12 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         }
     }
     
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!)
+    {
+        println("ERROR LOCATIONMANAGER")
+        println(error.localizedDescription)
+    }
+    
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
     {
         var location = locations[0] as CLLocation
@@ -76,7 +81,10 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             println("Center map to \(locationManager.location.coordinate)")
             centerMapToCoordinate(locationManager.location.coordinate)
             mapIsCentered = true
-            println("To raw \(Notification.RetrievePOIFromServices.toRaw())")
+            
+            let region = MKCoordinateRegionMakeWithDistance(locationManager.location.coordinate, 1000, 1000)
+            
+            mapView.setRegion(region, animated: true)
             NSNotificationCenter.defaultCenter().postNotificationName(Notification.RetrievePOIFromServices.toRaw(), object: nil, userInfo: ["latitude": location.coordinate.latitude, "longitude": location.coordinate.longitude])
         }
     }
@@ -85,8 +93,8 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     func initMapView()
     {
-        mapView.delegate = self
-        mapView.showsUserLocation = true
+        self.mapView.delegate = self
+        self.mapView.showsUserLocation = true
     }
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView!
@@ -97,7 +105,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             return nil
         }
 
-        var pin = mapView.dequeueReusableAnnotationViewWithIdentifier(MapAnnotation.POIAnnotation.toRaw())
+        var pin = self.mapView.dequeueReusableAnnotationViewWithIdentifier(MapAnnotation.POIAnnotation.toRaw())
         
         if !pin
         {
@@ -105,16 +113,41 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             
             let rightButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
             rightButton.setTitle(annotation.title, forState: UIControlState.Normal)
-            
+
             pin.rightCalloutAccessoryView = rightButton
             pin.canShowCallout = true
+            
+            let image = UIImage(named: "starbucks_open")
+            
+            pin.image = image
         }
+        else
+        {
+            pin.annotation = annotation
+        }
+        
+//        let realAnnotation = annotation as POIAnnotation        
+        
         return pin
+    }
+
+    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!)
+    {
+        if view.annotation.isKindOfClass(MKUserLocation)
+        {
+            return
+        }
+        
+        let poiIndex = (view.annotation as POIAnnotation).index
+        
+        centerMapToCoordinate(view.annotation.coordinate)
+        
+        let notification : NSNotification = NSNotification.notificationWithName(Notification.ShowPOIDetailsViewController.toRaw(), object: self, sourceViewController: self, poi: self.poiModel.collection[poiIndex])
+        NSNotificationCenter.defaultCenter().postNotification(notification)
     }
     
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!)
     {
-        //NSNotificationCenter.defaultCenter().postNotificationName(Notification.ShowPOIDetailsViewController.toRaw(), object: nil)
         let poiIndex = (view.annotation as POIAnnotation).index
         println("Posting notification with VO : \(poiIndex)")
         
@@ -128,14 +161,12 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     func centerMapToCoordinate(coordinate: CLLocationCoordinate2D)
     {
         if lastCenteredLocation.latitude != coordinate.latitude
-            && lastCenteredLocation.longitude != coordinate.longitude
+           || lastCenteredLocation.longitude != coordinate.longitude
         {
-            mapView.setCenterCoordinate(locationManager.location.coordinate, animated: true)
-            let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, 1000, 1000)
-        
-            mapView.setRegion(region, animated: true)
             lastCenteredLocation = coordinate
         }
+
+        mapView.setCenterCoordinate(lastCenteredLocation, animated: true)
     }
     
     // OBSERVER
@@ -162,6 +193,8 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         //reload data
         println("POI model collection changed : \(poiModel.collection.count)")
 
+        var annotations: [POIAnnotation] = []
+        
         for (index, poi: POIVO) in enumerate(poiModel.collection)
         {
             let point = POIAnnotation()
@@ -170,9 +203,10 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             point.title = poi.id
             point.subtitle = "subtitle"
             point.index = index
-            
-            self.mapView.addAnnotation(point)
+        
+            annotations += [point]
         }
+        self.mapView.addAnnotations(annotations)
     }
     
     deinit

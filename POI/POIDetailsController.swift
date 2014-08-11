@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class POIDetailsController : ControllerBase
-{    
+{
     func setup()
     {
         NSNotificationCenter.defaultCenter().addObserver(
