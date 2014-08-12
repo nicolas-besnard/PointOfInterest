@@ -116,10 +116,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 
             pin.rightCalloutAccessoryView = rightButton
             pin.canShowCallout = true
-            
-            let image = UIImage(named: "starbucks_close")
-            
-            pin.image = image
         }
         else
         {
@@ -132,6 +128,10 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         if restaurantVO.isOpened
         {
             pin.image = UIImage(named: "starbucks_open")
+        }
+        else
+        {
+            pin.image = UIImage(named: "starbucks_closed")
         }
         
         return pin
