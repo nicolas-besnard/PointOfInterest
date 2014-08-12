@@ -117,7 +117,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             pin.rightCalloutAccessoryView = rightButton
             pin.canShowCallout = true
             
-            let image = UIImage(named: "starbucks_open")
+            let image = UIImage(named: "starbucks_close")
             
             pin.image = image
         }
@@ -125,8 +125,14 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         {
             pin.annotation = annotation
         }
+        let restaurantAnnotation = annotation as POIAnnotation
+        let poiIndex = restaurantAnnotation.index as Int
+        var restaurantVO: RestaurantPOIVO = poiModel.collection[poiIndex] as RestaurantPOIVO
         
-//        let realAnnotation = annotation as POIAnnotation        
+        if restaurantVO.isOpened
+        {
+            pin.image = UIImage(named: "starbucks_open")
+        }
         
         return pin
     }

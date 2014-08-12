@@ -26,6 +26,8 @@ class StartbucksPOIService : POIServiceProtocol
         
         let endpoint = "https://openapi.starbucks.com/location/v1/stores?&format=json&radius=10&limit=15&brandCode=SBUX&latLng=\(latitude)%2C\(longitude)&apikey=7b35m595vccu6spuuzu2rjh4"
         
+        println("ENDPONT")
+        println(endpoint)
         manager.GET(endpoint,
             parameters: nil,
             success: { (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in

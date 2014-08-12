@@ -12,6 +12,7 @@ import MapKit
 class RestaurantPOIVO : POIVO
 {
     var distance: Double!
+    var isOpened = false
     
     init(id: String, coordinate: CLLocationCoordinate2D)
     {
@@ -35,8 +36,14 @@ class RestaurantPOIVO : POIVO
             let longitude = json["store"]["coordinates"]["longitude"].double!
             let distance  = json["distance"].double!
             let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-            
+          
             var tmp_restaurant: RestaurantPOIVO = RestaurantPOIVO(id: id, coordinate: coordinate)
+            
+            if json["store"]["today"]["opensIn"].string == nil
+            {
+                tmp_restaurant.isOpened = true
+            }
+            
             tmp_restaurant.distance = distance
             restaurants.append(tmp_restaurant)
         }

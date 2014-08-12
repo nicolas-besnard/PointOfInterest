@@ -26,6 +26,7 @@ class POIController : ControllerBase
     
     func searchNearbyPOI(notification: NSNotification)
     {
+        println("Search")
         let latitude  = notification.userInfo["latitude"]! as CLLocationDegrees
         let longitude = notification.userInfo["longitude"]! as CLLocationDegrees
         
