@@ -131,9 +131,11 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         }
         else
         {
-            pin.image = UIImage(named: "starbucks_closed")
+            pin.image = UIImage(named: "starbucks_close")
         }
         
+        pin.sizeThatFits(CGSize(width: 0, height: 0))
+
         return pin
     }
 
@@ -162,6 +164,34 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         let notification : NSNotification = NSNotification.notificationWithName(Notification.ShowPOIDetailsViewController.toRaw(), object: self, sourceViewController: self, poi: self.poiModel.collection[poiIndex])
         
         NSNotificationCenter.defaultCenter().postNotification(notification)
+    }
+
+    func mapView(mapView: MKMapView!, didAddAnnotationViews views: [AnyObject]!)
+    {
+        var delay: Double = 0.25
+        
+        for view: MKAnnotationView in views as [MKAnnotationView]
+        {
+            if view.annotation.isKindOfClass(MKUserLocation)
+            {
+                return
+            }
+            
+            let endFrame = view.frame
+            view.frame = CGRect(x: endFrame.origin.x, y: endFrame.origin.y, width: 0, height: 0)
+            UIView.animateWithDuration(0.75,
+                delay: delay,
+                usingSpringWithDamping: 0.5,
+                initialSpringVelocity: 0.1,
+                options: UIViewAnimationOptions.CurveEaseIn,
+                animations: { () in
+                    view.frame = CGRect(x: endFrame.origin.x, y: endFrame.origin.y, width: endFrame.size.width, height: endFrame.size.height)
+                },
+                completion: { (finished: Bool) in
+                }
+            )
+            delay += 0.15
+        }
     }
     
     func centerMapToCoordinate(coordinate: CLLocationCoordinate2D)
