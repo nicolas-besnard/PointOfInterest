@@ -16,6 +16,8 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     var locationManager: CLLocationManager = CLLocationManager()
     var poiModel: POIModel!
     
+    var annotations: [POIAnnotation] = []
+    
     var mapIsCentered: Bool!
     
     var lastCenteredLocation = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
@@ -97,6 +99,25 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         self.mapView.showsUserLocation = true
     }
     
+    func mapView(mapView: MKMapView!, regionDidChangeAnimated animated: Bool)
+    {
+        for annotation: POIAnnotation in self.annotations
+        {
+            let annotationPoint = MKMapPointForCoordinate(annotation.coordinate)
+            
+            if MKMapRectContainsPoint(mapView.visibleMapRect, annotationPoint)
+            {
+                mapView.addAnnotation(annotation)
+                println("add")
+            }
+            else
+            {
+                mapView.removeAnnotation(annotation)
+            }
+        }
+        (mapView.annotations as [MKAnnotation])
+    }
+    
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView!
     {
         // Don't handle user location pin
@@ -168,7 +189,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 
     func mapView(mapView: MKMapView!, didAddAnnotationViews views: [AnyObject]!)
     {
-        var delay: Double = 0.25
+        var delay: Double = 0.0
         
         for view: MKAnnotationView in views as [MKAnnotationView]
         {
@@ -190,7 +211,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
                 completion: { (finished: Bool) in
                 }
             )
-            delay += 0.15
+            delay += 0.05
         }
     }
     
@@ -242,7 +263,8 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
             annotations += [point]
         }
-        self.mapView.addAnnotations(annotations)
+//        self.mapView.addAnnotations(annotations)
+        self.annotations = annotations
     }
     
     deinit

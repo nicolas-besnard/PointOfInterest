@@ -1,8 +1,12 @@
-// Playground - noun: a place where people can play
+//
+//  Array.swift
+//  POI
+//
+//  Created by Nicolas Besnard on 12/08/2014.
+//  Copyright (c) 2014 Nicolas Besnard. All rights reserved.
+//
 
-import UIKit
-
-var collection: [Int] = [1, 2, 3]
+import Foundation
 
 extension Array
 {
@@ -32,4 +36,3 @@ extension Array
         return nil
     }
 }
-
