@@ -26,11 +26,12 @@ class POIDetailsController : ControllerBase
         {
             println("did ask : \(poi.distance)")
             
-            let sourceViewController: UIViewController! = notification.sourceViewController()
+            let sourceViewController: UIViewController! = notification.sourceViewController()!
             
             let poiDetailsViewController = context().poiDetailsViewController
             
             let containsVC = viewControllerContainsViewController(sourceViewController, contains: poiDetailsViewController)
+            
             if containsVC == true
             {
                 if !poiDetailsViewController.poiDetailsView().viewIsShown
@@ -53,9 +54,9 @@ class POIDetailsController : ControllerBase
     
     private func viewControllerContainsViewController(viewController: UIViewController, contains: UIViewController) -> Bool
     {
-        for currentVC: UIViewController in UIApplication.sharedApplication().keyWindow.rootViewController.childViewControllers as [UIViewController]
+        for currentVC: UIViewController in viewController.childViewControllers as [UIViewController]
         {
-            if currentVC.isKindOfClass(viewController.classForCoder)
+            if currentVC.isKindOfClass(contains.classForCoder)
             {
                 return true
             }

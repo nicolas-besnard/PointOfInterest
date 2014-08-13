@@ -11,6 +11,7 @@ import UIKit
 class POIDetailsViewController: UIViewController
 {
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var isOpenedLabel: UILabel!
     
     var poiDetailsController: POIDetailsController!
     
@@ -27,6 +28,7 @@ class POIDetailsViewController: UIViewController
     {
         println("set details")
         distanceLabel.text = NSString(format: "%f", poi.distance)
+        isOpenedLabel.text = (poi.isOpened ? "Yes" : "False")
     }
     
     override func viewWillAppear(animated: Bool)

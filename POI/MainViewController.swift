@@ -54,13 +54,11 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     {
         if status == CLAuthorizationStatus.NotDetermined
         {
-            println("LocationManager Request")
             manager.requestWhenInUseAuthorization()
         }
         else if status == CLAuthorizationStatus.AuthorizedWhenInUse
         {
-            println("LocationManager Authorized")
-            locationManager.startUpdatingLocation()
+            manager.startUpdatingLocation()
         }
         else
         {
@@ -143,16 +141,12 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             let mapHasToDisplayAnnotation = MKMapRectContainsPoint(mapViewVisibleMapRect, MKMapPointForCoordinate(annotation.coordinate))
             let annotationIsPresentOnMap = annotationInMap.contains(annotation)
             
-            println("annotationIsPresentOnMap \(annotationIsPresentOnMap)")
-            println("mapHasToDisplayAnnotation \(mapHasToDisplayAnnotation)")
             if mapHasToDisplayAnnotation && !annotationIsPresentOnMap
             {
-                println("add")
                 mapView.addAnnotation(annotation)
             }
             if annotationIsPresentOnMap && !mapHasToDisplayAnnotation
             {
-                println("remove")
                 mapView.removeAnnotation(annotation)
             }
         }
@@ -208,6 +202,8 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         {
             return
         }
+        
+        mapView.deselectAnnotation(view.annotation, animated: true)
         
         let poiIndex = (view.annotation as POIAnnotation).index
         
