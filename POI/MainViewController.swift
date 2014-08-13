@@ -99,25 +99,72 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         self.mapView.showsUserLocation = true
     }
     
-    func mapView(mapView: MKMapView!, regionDidChangeAnimated animated: Bool)
+//    func getMapAnnotationInMap(mapView: MKMapView!) -> [POIAnnotation]
+//    {
+//        let mapRect = mapView.visibleMapRect
+//        let annotationsInMapRect = mapView.annotationsInMapRect(mapRect)
+//        
+//        var annotationCollection: [POIAnnotation] = []
+//        
+//        for annotation: MKAnnotation in annotationsInMapRect.allObjects as Array<MKAnnotation>
+//        {
+//            if annotation.isKindOfClass(MKUserLocation)
+//            {
+//                continue
+//            }
+//            annotationCollection += [annotation as POIAnnotation]
+//        }
+//        
+//        return annotationCollection
+//    }
+    
+    func getMapAnnotationInMap(mapView: MKMapView!) -> [POIAnnotation]
     {
+        var annotationCollection: [POIAnnotation] = []
+        
+        for annotation: MKAnnotation in mapView.annotations as [MKAnnotation]
+        {
+            if annotation.isKindOfClass(MKUserLocation)
+            {
+                continue
+            }
+            annotationCollection += [annotation as POIAnnotation]
+        }
+        return annotationCollection
+    }
+    
+    func addAnnotationToMapView(mapView: MKMapView!)
+    {
+        let mapViewVisibleMapRect = mapView.visibleMapRect
+        let annotationInMap = getMapAnnotationInMap(mapView)
+        
         for annotation: POIAnnotation in self.annotations
         {
-            let annotationPoint = MKMapPointForCoordinate(annotation.coordinate)
+            let mapHasToDisplayAnnotation = MKMapRectContainsPoint(mapViewVisibleMapRect, MKMapPointForCoordinate(annotation.coordinate))
+            let annotationIsPresentOnMap = annotationInMap.contains(annotation)
             
-            if MKMapRectContainsPoint(mapView.visibleMapRect, annotationPoint)
+            println("annotationIsPresentOnMap \(annotationIsPresentOnMap)")
+            println("mapHasToDisplayAnnotation \(mapHasToDisplayAnnotation)")
+            if mapHasToDisplayAnnotation && !annotationIsPresentOnMap
             {
-                mapView.addAnnotation(annotation)
                 println("add")
+                mapView.addAnnotation(annotation)
             }
-            else
+            if annotationIsPresentOnMap && !mapHasToDisplayAnnotation
             {
+                println("remove")
                 mapView.removeAnnotation(annotation)
             }
         }
-        (mapView.annotations as [MKAnnotation])
+
     }
     
+    func mapView(mapView: MKMapView!, regionDidChangeAnimated animated: Bool)
+    {
+        println("regionDidChange")
+        addAnnotationToMapView(mapView)
+    }
+
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView!
     {
         // Don't handle user location pin
@@ -131,17 +178,12 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         if !pin
         {
             pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: MapAnnotation.POIAnnotation.toRaw())
-            
-            let rightButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
-            rightButton.setTitle(annotation.title, forState: UIControlState.Normal)
-
-            pin.rightCalloutAccessoryView = rightButton
-            pin.canShowCallout = true
         }
         else
         {
             pin.annotation = annotation
         }
+        
         let restaurantAnnotation = annotation as POIAnnotation
         let poiIndex = restaurantAnnotation.index as Int
         var restaurantVO: RestaurantPOIVO = poiModel.collection[poiIndex] as RestaurantPOIVO
@@ -247,24 +289,20 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     func poiModelCollectionChanged()
     {
-        //reload data
         println("POI model collection changed : \(poiModel.collection.count)")
 
-        var annotations: [POIAnnotation] = []
         
         for (index, poi: POIVO) in enumerate(poiModel.collection)
         {
             let point = POIAnnotation()
             
             point.coordinate = poi.coordinate
-            point.title = poi.id
-            point.subtitle = "subtitle"
             point.index = index
         
-            annotations += [point]
+            self.annotations += [point]
         }
-//        self.mapView.addAnnotations(annotations)
-        self.annotations = annotations
+        
+        addAnnotationToMapView(mapView)
     }
     
     deinit
