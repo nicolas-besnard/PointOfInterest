@@ -22,6 +22,8 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     var lastCenteredLocation = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
     
+    var regionWillChangeBecauseOfClickAnnotation = false
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -97,32 +99,13 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         self.mapView.showsUserLocation = true
     }
     
-//    func getMapAnnotationInMap(mapView: MKMapView!) -> [POIAnnotation]
-//    {
-//        let mapRect = mapView.visibleMapRect
-//        let annotationsInMapRect = mapView.annotationsInMapRect(mapRect)
-//        
-//        var annotationCollection: [POIAnnotation] = []
-//        
-//        for annotation: MKAnnotation in annotationsInMapRect.allObjects as Array<MKAnnotation>
-//        {
-//            if annotation.isKindOfClass(MKUserLocation)
-//            {
-//                continue
-//            }
-//            annotationCollection += [annotation as POIAnnotation]
-//        }
-//        
-//        return annotationCollection
-//    }
-    
     func getMapAnnotationInMap(mapView: MKMapView!) -> [POIAnnotation]
     {
         var annotationCollection: [POIAnnotation] = []
         
         for annotation: MKAnnotation in mapView.annotations as [MKAnnotation]
         {
-            if annotation.isKindOfClass(MKUserLocation)
+            if annotation is MKUserLocation
             {
                 continue
             }
@@ -155,14 +138,26 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     func mapView(mapView: MKMapView!, regionDidChangeAnimated animated: Bool)
     {
-        println("regionDidChange")
+        if regionWillChangeBecauseOfClickAnnotation
+        {
+            regionWillChangeBecauseOfClickAnnotation = false
+        }
         addAnnotationToMapView(mapView)
+    }
+    
+    func mapView(mapView: MKMapView!, regionWillChangeAnimated animated: Bool)
+    {
+        if !regionWillChangeBecauseOfClickAnnotation
+        {
+            let notification = NSNotification(name: Notification.HidePOIDetailsViewController.toRaw(), object: nil)
+            NSNotificationCenter.defaultCenter().postNotification(notification)
+        }
     }
 
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView!
     {
         // Don't handle user location pin
-        if annotation.isKindOfClass(MKUserLocation)
+        if annotation is MKUserLocation
         {
             return nil
         }
@@ -198,11 +193,12 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!)
     {
-        if view.annotation.isKindOfClass(MKUserLocation)
+        if view.annotation is MKUserLocation
         {
+            println("USER LOCATION")
             return
         }
-        
+        regionWillChangeBecauseOfClickAnnotation = true
         mapView.deselectAnnotation(view.annotation, animated: true)
         
         let poiIndex = (view.annotation as POIAnnotation).index
@@ -212,18 +208,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         let notification : NSNotification = NSNotification.notificationWithName(Notification.ShowPOIDetailsViewController.toRaw(), object: self, sourceViewController: self, poi: self.poiModel.collection[poiIndex])
         NSNotificationCenter.defaultCenter().postNotification(notification)
     }
-    
-    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!)
-    {
-        let poiIndex = (view.annotation as POIAnnotation).index
-        println("Posting notification with VO : \(poiIndex)")
-        
-        centerMapToCoordinate(view.annotation.coordinate)
-
-        let notification : NSNotification = NSNotification.notificationWithName(Notification.ShowPOIDetailsViewController.toRaw(), object: self, sourceViewController: self, poi: self.poiModel.collection[poiIndex])
-        
-        NSNotificationCenter.defaultCenter().postNotification(notification)
-    }
 
     func mapView(mapView: MKMapView!, didAddAnnotationViews views: [AnyObject]!)
     {
@@ -231,8 +215,9 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         for view: MKAnnotationView in views as [MKAnnotationView]
         {
-            if view.annotation.isKindOfClass(MKUserLocation)
+            if view.annotation is MKUserLocation
             {
+                view.canShowCallout = false
                 return
             }
             
@@ -255,8 +240,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     func centerMapToCoordinate(coordinate: CLLocationCoordinate2D)
     {
-        if lastCenteredLocation.latitude != coordinate.latitude
-           || lastCenteredLocation.longitude != coordinate.longitude
+        if lastCenteredLocation != coordinate
         {
             lastCenteredLocation = coordinate
         }

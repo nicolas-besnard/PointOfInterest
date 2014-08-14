@@ -36,8 +36,7 @@ class RestaurantPOIVO : POIVO
             let id        = json["store"]["id"].string!
             let latitude  = json["store"]["coordinates"]["latitude"].double!
             let longitude = json["store"]["coordinates"]["longitude"].double!
-            let openTime  = json["store"]["today"]["openTime"].string!
-            let closeTime  = json["store"]["today"]["closeTime"].string!
+
             let distance  = json["distance"].double!
             let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
           
@@ -49,8 +48,14 @@ class RestaurantPOIVO : POIVO
             }
             
             tmp_restaurant.distance = distance
-            tmp_restaurant.openTime = openTime
-            tmp_restaurant.closeTime = closeTime
+            if let today = json["store"]["today"].object
+            {
+                let openTime = json["store"]["today"]["openTime"].string!
+                let closeTime = json["store"]["today"]["closeTime"].string!
+                tmp_restaurant.openTime = openTime.deleteLastCharacter(3)
+                tmp_restaurant.closeTime = closeTime.deleteLastCharacter(3)
+            }
+        
             restaurants.append(tmp_restaurant)
         }
         

@@ -13,6 +13,7 @@ enum Notification: String
 {
     case RetrievePOIFromServices = "RetrievePOIFromServices"
     case ShowPOIDetailsViewController = "ShowPOIDetailsViewController"
+    case HidePOIDetailsViewController = "HidePOIDetailsViewController"
 }
 
 let _sourceViewControllerKey : String = "_sourceViewControllerKey"

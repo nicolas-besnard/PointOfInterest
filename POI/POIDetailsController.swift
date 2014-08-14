@@ -18,13 +18,29 @@ class POIDetailsController : ControllerBase
             selector: "ShowPOIDetailsViewController:",
             name: Notification.ShowPOIDetailsViewController.toRaw(),
             object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "HidePOIDetailsViewController:",
+            name: Notification.HidePOIDetailsViewController.toRaw(),
+            object: nil)
+    }
+    
+    func HidePOIDetailsViewController(notification: NSNotification)
+    {
+        let poiDetailsViewController = context().poiDetailsViewController
+
+        if poiDetailsViewController.poiDetailsView().viewIsShown
+        {
+            poiDetailsViewController.poiDetailsView().playDisappearAnimation()
+        }
     }
     
     func ShowPOIDetailsViewController(notification: NSNotification)
     {
         if let poi = notification.poi()?
         {
-            println("did ask : \(poi.distance)")
+            println("did ask ShowPOIDetailsViewController")
             
             let sourceViewController: UIViewController! = notification.sourceViewController()!
             

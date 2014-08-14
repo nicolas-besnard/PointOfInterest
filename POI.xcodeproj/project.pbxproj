@@ -28,8 +28,10 @@
 		3757D0231994CC2A00D27184 /* POIAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757D0221994CC2A00D27184 /* POIAnnotation.swift */; };
 		376120F8198F73A70037A7C1 /* POIDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376120F7198F73A70037A7C1 /* POIDetailsView.swift */; };
 		376120FA198F779E0037A7C1 /* POIDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376120F9198F779E0037A7C1 /* POIDetailsViewController.swift */; };
+		37803CDA199CE5600028C29B /* CLLocationCoordinate2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37803CD9199CE5600028C29B /* CLLocationCoordinate2D.swift */; };
 		37879F4C19951E1500A391AD /* StartbucksPOIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37879F4B19951E1500A391AD /* StartbucksPOIService.swift */; };
 		37879F53199527DF00A391AD /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37879F52199527DF00A391AD /* SwiftyJSON.swift */; };
+		37929F80199CEAAA005C2C33 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37929F7F199CEAAA005C2C33 /* String.swift */; };
 		37D3F793198C171C002CC134 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D3F792198C171C002CC134 /* Notification.swift */; };
 		37E0508D199AB2D600A8D991 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E0508C199AB2D600A8D991 /* Array.swift */; };
 /* End PBXBuildFile section */
@@ -71,9 +73,11 @@
 		3757D0221994CC2A00D27184 /* POIAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POIAnnotation.swift; sourceTree = "<group>"; };
 		376120F7198F73A70037A7C1 /* POIDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POIDetailsView.swift; sourceTree = "<group>"; };
 		376120F9198F779E0037A7C1 /* POIDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POIDetailsViewController.swift; sourceTree = "<group>"; };
+		37803CD9199CE5600028C29B /* CLLocationCoordinate2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationCoordinate2D.swift; sourceTree = "<group>"; };
 		37879F4B19951E1500A391AD /* StartbucksPOIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartbucksPOIService.swift; sourceTree = "<group>"; };
 		37879F4D1995222500A391AD /* POI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "POI-Bridging-Header.h"; sourceTree = "<group>"; };
 		37879F52199527DF00A391AD /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		37929F7F199CEAAA005C2C33 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		37D3F792198C171C002CC134 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		37E0508C199AB2D600A8D991 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		6EE1BC3DC3E4464DBD6A679D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -241,8 +245,10 @@
 		37E05091199AC17C00A8D991 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				37803CD9199CE5600028C29B /* CLLocationCoordinate2D.swift */,
 				37E0508C199AB2D600A8D991 /* Array.swift */,
 				3746DE13198BC5C60060AFBC /* UIViewController.swift */,
+				37929F7F199CEAAA005C2C33 /* String.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -420,6 +426,7 @@
 				3746DE14198BC5C60060AFBC /* UIViewController.swift in Sources */,
 				37042433198FCCBD00F99EDC /* POIDetailsController.swift in Sources */,
 				3746DE12198BC57E0060AFBC /* ControllerBase.swift in Sources */,
+				37929F80199CEAAA005C2C33 /* String.swift in Sources */,
 				3746DE10198BC4120060AFBC /* POIService.swift in Sources */,
 				373300AC198D239800AB9B15 /* MapAnnotation.swift in Sources */,
 				3746DE16198BC7D00060AFBC /* MockPOIService.swift in Sources */,
@@ -428,6 +435,7 @@
 				3746DE0B198BC2F20060AFBC /* POIController.swift in Sources */,
 				37879F4C19951E1500A391AD /* StartbucksPOIService.swift in Sources */,
 				3746DE02198BC0700060AFBC /* POIVO.swift in Sources */,
+				37803CDA199CE5600028C29B /* CLLocationCoordinate2D.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
