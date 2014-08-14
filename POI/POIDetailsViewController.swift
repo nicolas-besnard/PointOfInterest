@@ -12,6 +12,8 @@ class POIDetailsViewController: UIViewController
 {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var isOpenedLabel: UILabel!
+    @IBOutlet weak var openTimeLabel: UILabel!
+    @IBOutlet weak var closeTimeLabel: UILabel!
     
     var poiDetailsController: POIDetailsController!
     
@@ -21,14 +23,16 @@ class POIDetailsViewController: UIViewController
         
         poiDetailsView().moveToDefaultPosition()
         
-        poiDetailsController = context().poiDetailsController        
+        poiDetailsController = context().poiDetailsController
     }
     
     func setDetails(poi: RestaurantPOIVO)
     {
         println("set details")
-        distanceLabel.text = NSString(format: "%f", poi.distance)
+        distanceLabel.text = NSString(format: "%.2f", poi.distance)
         isOpenedLabel.text = (poi.isOpened ? "Yes" : "False")
+        openTimeLabel.text = poi.openTime
+        closeTimeLabel.text = poi.closeTime
     }
     
     override func viewWillAppear(animated: Bool)
