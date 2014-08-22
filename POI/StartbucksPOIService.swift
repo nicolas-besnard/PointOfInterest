@@ -13,12 +13,6 @@ class StartbucksPOIService : POIServiceProtocol
 {
     func searcWithCoordinate(coordinate: CLLocationCoordinate2D, completionBlock: POIServiceCompletionBlock)
     {
-        var rest1 = RestaurantPOIVO(id: "1", coordinate: CLLocationCoordinate2D(latitude: 48, longitude: 2.32))
-        var rest2 = RestaurantPOIVO(id: "2", coordinate: CLLocationCoordinate2D(latitude: 48, longitude: 2.34))
-        var rest3 = RestaurantPOIVO(id: "3", coordinate: CLLocationCoordinate2D(latitude: 48, longitude: 2.35))
-        var array = [rest1, rest2, rest3]
-        
-
         let manager = AFHTTPRequestOperationManager()
         
         let latitude = coordinate.latitude
