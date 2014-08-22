@@ -33,12 +33,20 @@ extension NSNotification
     
     func sourceViewController() -> UIViewController?
     {
-        return userInfo![_sourceViewControllerKey] as? UIViewController
+        if let info = userInfo
+        {
+            return info[_sourceViewControllerKey] as? UIViewController
+        }
+        return nil
     }
     
     func poi() -> RestaurantPOIVO?
     {
-        return userInfo![_poiKey] as? RestaurantPOIVO
+        if let info = userInfo
+        {
+            return info![_poiKey] as? RestaurantPOIVO
+        }
+        return nil
     }
 }
     
