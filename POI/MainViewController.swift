@@ -164,7 +164,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 
         var pin = self.mapView.dequeueReusableAnnotationViewWithIdentifier(MapAnnotation.POIAnnotation.toRaw())
         
-        if !pin
+        if pin == nil
         {
             pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: MapAnnotation.POIAnnotation.toRaw())
         }

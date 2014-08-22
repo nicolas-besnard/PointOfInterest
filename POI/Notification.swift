@@ -27,19 +27,18 @@ extension NSNotification
         userInfo[_sourceViewControllerKey] = sourceViewController
         userInfo[_poiKey] = poi
 
-        let notification : NSNotification = NSNotification.notificationWithName(name, object: object, userInfo: userInfo)
-        
+        let notification : NSNotification = NSNotification(name: name, object: object, userInfo: userInfo)
         return notification
     }
     
     func sourceViewController() -> UIViewController?
     {
-        return userInfo[_sourceViewControllerKey] as? UIViewController
+        return userInfo![_sourceViewControllerKey] as? UIViewController
     }
     
     func poi() -> RestaurantPOIVO?
     {
-        return userInfo[_poiKey] as? RestaurantPOIVO
+        return userInfo![_poiKey] as? RestaurantPOIVO
     }
 }
     
