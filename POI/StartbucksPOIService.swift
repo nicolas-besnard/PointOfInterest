@@ -35,8 +35,5 @@ class StartbucksPOIService : POIServiceProtocol
                 println(endpoint)
             }
         )
-        
-//        completionBlock(poi: array)
     }
-    
 }

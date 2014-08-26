@@ -44,7 +44,7 @@ extension NSNotification
     {
         if let info = userInfo
         {
-            return info![_poiKey] as? RestaurantPOIVO
+            return info[_poiKey] as? RestaurantPOIVO
         }
         return nil
     }
