@@ -15,7 +15,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     @IBOutlet weak var locationImage: UIImageView!
     @IBOutlet weak var locationView: UIView!
     
-    var images: [String: UIImage]!
     var locationManager: CLLocationManager = CLLocationManager()
     var poiModel: POIModel!
     
@@ -41,13 +40,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         let gesture = UITapGestureRecognizer(target: self, action: "didTouchLocationView:")
         locationView.addGestureRecognizer(gesture)
-        
-        self.images = [
-            "starbucksOpened": UIImage(named: "starbucks_open"),
-            "starbucksClosed": UIImage(named: "starbucks_close"),
-            "locationGrey": UIImage(named: "location_grey"),
-            "locationBlue": UIImage(named: "location_blue")
-        ]
     }
     
     func didTouchLocationView(recognizer: UITapGestureRecognizer)
@@ -163,7 +155,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         {
             regionWillChangeBecauseOfClickAnnotation = false
         }
-        locationImage.image = images["locationGrey"]
+        locationImage.image = context().imagesManager["locationBlue"]
         addAnnotationToMapView(mapView)
     }
     
@@ -201,11 +193,11 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         if restaurantVO.isOpened
         {
-            pin.image = images["starbucksOpened"]
+            pin.image = context().imagesManager["starbucksOpened"]
         }
         else
         {
-            pin.image = images["starbucksClosed"]
+            pin.image = context().imagesManager["starbucksClosed"]
         }
         
         pin.sizeThatFits(CGSize(width: 0, height: 0))
@@ -266,9 +258,8 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         if lastCenteredLocation != coordinate
         {
             lastCenteredLocation = coordinate
-            locationImage.image = images["locationBlue"]
+            locationImage.image = context().imagesManager["locationGrey"]
         }
-
         mapView.setCenterCoordinate(lastCenteredLocation, animated: true)
     }
     
@@ -294,7 +285,6 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     func poiModelCollectionChanged()
     {
         println("POI model collection changed : \(poiModel.collection.count)")
-
         
         for (index, poi: POIVO) in enumerate(poiModel.collection)
         {

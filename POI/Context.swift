@@ -24,6 +24,9 @@ class Context
     // SERVICES
     var poiServices: [POIServiceProtocol]
     
+    // MANAGER
+    var imagesManager: ImagesManager!
+    
     init()
     {
         poiModel = POIModel()
@@ -31,6 +34,8 @@ class Context
         poiServices = [StartbucksPOIService()]
         poiDetailsController = POIDetailsController()
         poiDetailsViewController = newPOIDetailsViewController()
+        imagesManager = ImagesManager()
+        addImagesToImagesManager()
     }
     
     func setup()
@@ -43,5 +48,13 @@ class Context
     {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         return storyboard.instantiateViewControllerWithIdentifier("POIDetailsViewControllerId") as POIDetailsViewController
+    }
+    
+    private func addImagesToImagesManager()
+    {
+        imagesManager.addImage("location_blue", key: "locationBlue")
+        imagesManager.addImage("location_grey", key: "locationGrey")
+        imagesManager.addImage("starbucks_open", key: "starbucksOpened")
+        imagesManager.addImage("starbucks_close", key: "starbucksClosed")
     }
 }
