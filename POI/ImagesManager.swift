@@ -14,7 +14,6 @@ class ImagesManager
     
     subscript(key: String) -> UIImage
     {
-        println("GET \(key)")
         return collection[key]!
     }
     
