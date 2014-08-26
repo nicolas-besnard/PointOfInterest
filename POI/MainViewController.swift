@@ -12,7 +12,10 @@ import MapKit
 class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
 {
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var locationImage: UIImageView!
+    @IBOutlet weak var locationView: UIView!
     
+    var images: [String: UIImage]!
     var locationManager: CLLocationManager = CLLocationManager()
     var poiModel: POIModel!
     
@@ -35,6 +38,24 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         poiModel = context().poiModel
         
         setupObserver()
+        
+        let gesture = UITapGestureRecognizer(target: self, action: "didTouchLocationView:")
+        locationView.addGestureRecognizer(gesture)
+        
+        self.images = [
+            "starbucksOpened": UIImage(named: "starbucks_open"),
+            "starbucksClosed": UIImage(named: "starbucks_close"),
+            "locationGrey": UIImage(named: "location_grey"),
+            "locationBlue": UIImage(named: "location_blue")
+        ]
+    }
+    
+    func didTouchLocationView(recognizer: UITapGestureRecognizer)
+    {
+        centerMapToCoordinate(locationManager.location.coordinate)
+        let region = MKCoordinateRegionMakeWithDistance(locationManager.location.coordinate, 1000, 1000)
+        
+        mapView.setRegion(region, animated: true)
     }
     
     override func didReceiveMemoryWarning()
@@ -142,6 +163,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         {
             regionWillChangeBecauseOfClickAnnotation = false
         }
+        locationImage.image = images["locationGrey"]
         addAnnotationToMapView(mapView)
     }
     
@@ -179,11 +201,11 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         if restaurantVO.isOpened
         {
-            pin.image = UIImage(named: "starbucks_open")
+            pin.image = images["starbucksOpened"]
         }
         else
         {
-            pin.image = UIImage(named: "starbucks_close")
+            pin.image = images["starbucksClosed"]
         }
         
         pin.sizeThatFits(CGSize(width: 0, height: 0))
@@ -244,6 +266,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         if lastCenteredLocation != coordinate
         {
             lastCenteredLocation = coordinate
+            locationImage.image = images["locationBlue"]
         }
 
         mapView.setCenterCoordinate(lastCenteredLocation, animated: true)

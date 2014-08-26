@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
+        <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -16,13 +17,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FAt-eu-KqB">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FAt-eu-KqB">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </mapView>
+                            <view alpha="0.69999999999999973" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="blO-HY-1Vm">
+                                <rect key="frame" x="20" y="530" width="40" height="40"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="location_grey" translatesAutoresizingMaskIntoConstraints="NO" id="W9u-PI-rjy">
+                                        <rect key="frame" x="10" y="10" width="20" height="20"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="FAt-eu-KqB" secondAttribute="bottom" id="Yx8-L5-ZgW"/>
+                            <constraint firstItem="blO-HY-1Vm" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="HCG-Vx-mV9"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="blO-HY-1Vm" secondAttribute="bottom" constant="20" id="KYv-K5-vIJ"/>
                             <constraint firstAttribute="trailing" secondItem="FAt-eu-KqB" secondAttribute="trailing" id="axI-rG-dDV"/>
                             <constraint firstItem="FAt-eu-KqB" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="ifS-ev-gTW"/>
                             <constraint firstItem="FAt-eu-KqB" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="jPR-a6-xli"/>
@@ -30,6 +41,8 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
+                        <outlet property="locationImage" destination="W9u-PI-rjy" id="aqY-he-Dqj"/>
+                        <outlet property="locationView" destination="blO-HY-1Vm" id="ugV-gP-n4W"/>
                         <outlet property="mapView" destination="FAt-eu-KqB" id="pta-gR-gkc"/>
                     </connections>
                 </viewController>
@@ -125,4 +138,7 @@
             <point key="canvasLocation" x="263" y="316"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="location_grey" width="45" height="45"/>
+    </resources>
 </document>
