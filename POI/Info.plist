@@ -4,6 +4,17 @@
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>test</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>poiCappie</string>
+			</array>
+			<key>CFBundleURLName</key>
+			<string>com.cappie.${PRODUCT_NAME:rfc1034identifier}</string>
+		</dict>
+	</array>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>test</string>
 	<key>CFBundleDevelopmentRegion</key>

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MapKit
 
 enum Notification: String
 {
@@ -16,17 +17,20 @@ enum Notification: String
     case HidePOIDetailsViewController = "HidePOIDetailsViewController"
 }
 
-let _sourceViewControllerKey : String = "_sourceViewControllerKey"
-let _poiKey : String = "_poiKey"
+let _sourceViewControllerKey = "_sourceViewControllerKey"
+let _poiKey = "_poiKey"
+let _currentUserLocationKey = "_currentUserLocation"
 
 extension NSNotification
 {
-    class func notificationWithName(name:NSString, object:AnyObject, sourceViewController:UIViewController, poi:POIVO) -> NSNotification
+    class func notificationWithName(name:NSString, object:AnyObject, sourceViewController:UIViewController, poi:POIVO, currentLocation: CLLocation) -> NSNotification
     {
         var userInfo = Dictionary<String, AnyObject>()
+
         userInfo[_sourceViewControllerKey] = sourceViewController
         userInfo[_poiKey] = poi
-
+        userInfo[_currentUserLocationKey] = currentLocation
+        
         let notification : NSNotification = NSNotification(name: name, object: object, userInfo: userInfo)
         return notification
     }
@@ -36,6 +40,15 @@ extension NSNotification
         if let info = userInfo
         {
             return info[_sourceViewControllerKey] as? UIViewController
+        }
+        return nil
+    }
+
+    func currentLocation() -> CLLocation?
+    {
+        if let info = userInfo
+        {
+            return info[_currentUserLocationKey] as? CLLocation
         }
         return nil
     }

@@ -60,7 +60,8 @@ class POIDetailsController : ControllerBase
                 sourceViewController.addChildViewController(poiDetailsViewController)
                 sourceViewController.view.addSubview(poiDetailsViewController.view)
             }
-            poiDetailsViewController.setDetails(poi)
+            let currentLocation = notification.currentLocation()!
+            poiDetailsViewController.setDetails(poi, currentLocation: currentLocation)
         }
         else
         {

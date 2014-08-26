@@ -196,6 +196,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         if view.annotation is MKUserLocation
         {
             println("USER LOCATION")
+            view.enabled = false
             return
         }
         regionWillChangeBecauseOfClickAnnotation = true
@@ -205,7 +206,7 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         centerMapToCoordinate(view.annotation.coordinate)
         
-        let notification : NSNotification = NSNotification.notificationWithName(Notification.ShowPOIDetailsViewController.toRaw(), object: self, sourceViewController: self, poi: self.poiModel.collection[poiIndex])
+        let notification : NSNotification = NSNotification.notificationWithName(Notification.ShowPOIDetailsViewController.toRaw(), object: self, sourceViewController: self, poi: self.poiModel.collection[poiIndex], currentLocation: locationManager.location)
         NSNotificationCenter.defaultCenter().postNotification(notification)
     }
 
